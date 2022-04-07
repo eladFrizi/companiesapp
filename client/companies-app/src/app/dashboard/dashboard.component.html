@@ -1,0 +1,22 @@
+<p>dashboard works!</p>
+Domain: <input type="text" [formControl]="newDomainInput">
+<button
+  (click)="handleAddNewCompany()"
+  [disabled]="isLoadingNewCompany$ | async"
+>add new company </button>
+
+<span *ngIf="isLoadingNewCompany$ | async">
+  Loading please wait
+</span>
+
+
+<ul>
+  <li *ngFor="let company of selectedCompanies$ | async; index as i">
+    <a
+    [routerLink]="['/company']"
+    [queryParams]="{ domain: company.data.domain }">
+      Name: {{company.data.name }} <br>
+      Description: {{company.data.description }}
+    </a>
+  </li>
+</ul>
